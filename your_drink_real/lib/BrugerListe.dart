@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:your_drink_real/brugerList.dart';
 import 'Bruger.dart';
+import 'addResident.dart';
 
-List<Bruger> users =[];
 
 class BrugerListe extends StatefulWidget {
   const BrugerListe({Key? key}) : super(key: key);
@@ -12,6 +13,8 @@ class BrugerListe extends StatefulWidget {
 }
 
 class _BrugerListeState extends State<BrugerListe> {
+ List<Bruger> users =brugerList.users;
+
   final _formKey = GlobalKey<FormState>();
   final _codeKey1 = GlobalKey<FormState>();
   final _codeKey2 = GlobalKey<FormState>();
@@ -190,10 +193,9 @@ class _BrugerListeState extends State<BrugerListe> {
                                             onPressed: () {
                                               if (myController3.text == kode) {
                                                 myController3.clear();
-                                                //navigér til næste viindue
-                                                //ellers så kom med en "hov koden var ikke den samme" besked
                                                 Navigator.pushNamed(
                                                     context, '/adminIndstillinger');
+                                                setState((){});
                                               } else {
                                                 print('con3: ' +
                                                     myController3.text +
@@ -218,6 +220,7 @@ class _BrugerListeState extends State<BrugerListe> {
                 height: 70,
                 color: Colors.green[300],
               ),
+
             ],
           ),
           Expanded(
