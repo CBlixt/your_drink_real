@@ -195,6 +195,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                                 myController3.clear();
                                                 Navigator.pushNamed(
                                                     context, '/adminIndstillinger');
+                                                setState((){});
                                               } else {
                                                 print('con3: ' +
                                                     myController3.text +
@@ -219,6 +220,7 @@ class _BrugerListeState extends State<BrugerListe> {
                 height: 70,
                 color: Colors.green[300],
               ),
+
             ],
           ),
           Expanded(
