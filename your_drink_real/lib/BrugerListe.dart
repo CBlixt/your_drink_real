@@ -59,12 +59,15 @@ class _BrugerListeState extends State<BrugerListe> {
                                     onTap: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: CircleAvatar(
-                                      child: Icon(
+                                    child: IconButton(
+                                      icon: Icon(
                                         Icons.close,
-                                        color: Colors.green[100],
+                                        color: Colors.red,
+                                        size: 25,
                                       ),
-                                      backgroundColor: Colors.green[300],
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                     ),
                                   ),
                                 ),
@@ -112,7 +115,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                                   color: Colors.green[900]),
                                             ),
                                             color: Colors.green[100],
-                                            onPressed: () {
+                                            onPressed: () async {
                                               if (myController1.text ==
                                                   myController2.text) {
                                                 //navigér til næste viindue
@@ -123,9 +126,12 @@ class _BrugerListeState extends State<BrugerListe> {
                                                 print('kode' + kode);
                                                 myController1.clear();
                                                 myController2.clear();
-                                                Navigator.pushNamed(
+                                                await Navigator.pushNamed(
                                                     context, '/adminIndstillinger');
+                                                setState((){});
+
                                               }
+
                                             }),
                                       ),
                                     ],
@@ -150,12 +156,15 @@ class _BrugerListeState extends State<BrugerListe> {
                                     onTap: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: CircleAvatar(
-                                      child: Icon(
+                                    child: IconButton(
+                                      icon: Icon(
                                         Icons.close,
-                                        color: Colors.green[100],
+                                        color: Colors.red,
+                                        size: 25,
                                       ),
-                                      backgroundColor: Colors.green[300],
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                     ),
                                   ),
                                 ),
@@ -190,11 +199,13 @@ class _BrugerListeState extends State<BrugerListe> {
                                                   color: Colors.green[900]),
                                             ),
                                             color: Colors.green[100],
-                                            onPressed: () {
+                                            onPressed: () async {
                                               if (myController3.text == kode) {
                                                 myController3.clear();
-                                                Navigator.pushNamed(
+
+                                                await Navigator.pushNamed(
                                                     context, '/adminIndstillinger');
+                                                setState((){});
                                                 setState((){});
                                               } else {
                                                 print('con3: ' +
@@ -202,6 +213,8 @@ class _BrugerListeState extends State<BrugerListe> {
                                                     ' kode: ' +
                                                     kode);
                                               }
+
+                                              setState((){});
                                             }),
                                       ),
                                     ],

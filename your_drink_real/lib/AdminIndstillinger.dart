@@ -25,28 +25,40 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
-        title: Text('Admin-instillinger'),
+        title: Text('Bruger-indstillinger'),
         backgroundColor: Colors.green[200],
       ),
-      body: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        SizedBox(
-          height: 100,
-        ),
-        FlatButton(
-          onPressed: ()async {
-            print('hej');
-            users.add(Bruger(navn: "Navn", husnummer: "Væresels nummer"));
-            await Navigator.pushNamed(
-                context, '/addResident',arguments:users.length-1);
-            setState((){});
+      body: Column(
+        children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            SizedBox(
+              height: 100,
+            ),
+            FlatButton(
+              onPressed: ()async {
+                print('hej');
+                users.add(Bruger(navn: "Navn", husnummer: "Væresels nummer"));
+                await Navigator.pushNamed(context, '/addResident',arguments:users.length-1);
+                setState((){});
 
-          },
-          child: Text('Add a resident'),
-          minWidth: 350,
-          height: 70,
-          color: Colors.green[300],
-        ),
-      ]),
+              },
+              child: Text('Add a resident'),
+              minWidth: 350,
+              height: 70,
+              color: Colors.green[300],
+            ),
+
+          ]),
+
+          Expanded(
+            child: ListView.builder(itemCount: users.length,itemBuilder: (context,index){
+              return Card(
+                child: ListTile(title: Text(users[index].navn),subtitle: Text(users[index].husnummer),),
+              );
+            }),
+          )
+        ],
+      ),
     );
   }
 }
