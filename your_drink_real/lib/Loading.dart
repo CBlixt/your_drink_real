@@ -32,9 +32,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
 
-          children: [
-
-            Image(image: AssetImage('assets/YourDrinkLogo.png'), height: 800,)
+          children: const [
+            SizedBox(
+              width: 250.0,
+                height: 250.0,
+                child: Image(image: AssetImage('assets/YourDrinkLogo.png'),
+            fit: BoxFit.cover))
           ],
         ),
       ),

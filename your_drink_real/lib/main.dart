@@ -8,7 +8,7 @@ import 'package:your_drink_real/AdminIndstillinger.dart';
 import 'package:your_drink_real/addResident.dart';
 
 void main() {
-  runApp(new MaterialApp(
+  runApp(MaterialApp(
     initialRoute: '/Loading',
     routes: {
       '/Loading': (context) => LoadingScreen(),
