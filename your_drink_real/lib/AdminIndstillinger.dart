@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:your_drink_real/brugerList.dart';
+
+import 'package:your_drink_real/main.dart';
+
+import 'Bruger.dart';
 
 class AdminIndstillinger extends StatefulWidget {
   const AdminIndstillinger({Key? key}) : super(key: key);
@@ -8,6 +13,7 @@ class AdminIndstillinger extends StatefulWidget {
 }
 
 class _AdminIndstillingerState extends State<AdminIndstillinger> {
+  List<Bruger> users = brugerList.users;
   final _formKeyAdmin = GlobalKey<FormState>();
   final _codeKeyAdmin1 = GlobalKey<FormState>();
   final _codeKeyAdmin2 = GlobalKey<FormState>();
@@ -27,7 +33,14 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
           height: 100,
         ),
         FlatButton(
-          onPressed: () {},
+          onPressed: ()async {
+            print('hej');
+            users.add(Bruger(navn: "Navn", husnummer: "Væresels nummer"));
+            await Navigator.pushNamed(
+                context, '/addResident',arguments:users.length-1);
+            setState((){});
+
+          },
           child: Text('Add a resident'),
           minWidth: 350,
           height: 70,
