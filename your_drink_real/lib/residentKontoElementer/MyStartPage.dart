@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'BrugerListe.dart';
-import 'Bruger.dart';
+import '../Bruger.dart';
 import 'package:flutter/src/widgets/page_view.dart';
 
 class MyStartPage extends StatefulWidget {

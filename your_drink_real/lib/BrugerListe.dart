@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:your_drink_real/brugerList.dart';
 import 'Bruger.dart';
 import 'Inventory/inventoryitem.dart';
-import 'LoadingUser.dart';
+import 'residentKontoElementer/LoadingUser.dart';
 import 'Users.dart';
 import 'package:your_drink_real/Inventory/inventoryList.dart';
 import 'addResident.dart';

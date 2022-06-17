@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:your_drink_real/Inventory/inventoryList.dart';
 import 'package:your_drink_real/Inventory/inventoryitem.dart';
-import 'Bruger.dart';
-import 'BrugerListe.dart';
+import '../Bruger.dart';
+import '../BrugerListe.dart';
 import 'CartPage.dart';
-import 'MyStartPage.dart';
 import 'SelectDrinks.dart';
+import 'MyStartPage.dart';
 
 class LoadingUser extends StatefulWidget {
   //const LoadingUser({Key? key, this.user, this.inventarListe, this.kurv}) : super(key: key);
@@ -66,7 +66,7 @@ class _LoadingUserState extends State<LoadingUser> {
       ),
       bottomNavigationBar: BottomNavigationBar(
 
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(

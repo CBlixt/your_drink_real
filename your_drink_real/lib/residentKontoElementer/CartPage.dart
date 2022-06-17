@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_drink_real/Inventory/inventoryitem.dart';
 
-import 'Bruger.dart';
+import '../Bruger.dart';
 //import 'package:softp_selv_yd/Objects/Kurv.dart';
 
 class CartPage extends StatefulWidget {
