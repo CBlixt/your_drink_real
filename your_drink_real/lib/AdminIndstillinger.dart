@@ -36,8 +36,7 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
             ),
             FlatButton(
               onPressed: ()async {
-                print('hej');
-                users.add(Bruger(navn: "Navn", husnummer: "Væresels nummer"));
+                users.add(Bruger(navn: "Navn", husnummer: "Væreselsnummer", debt: 0.0));
                 await Navigator.pushNamed(context, '/addResident',arguments:users.length-1);
                 setState((){});
 
@@ -53,8 +52,22 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
           Expanded(
             child: ListView.builder(itemCount: users.length,itemBuilder: (context,index){
               return Card(
-                child: ListTile(title: Text(users[index].navn),subtitle: Text(users[index].husnummer),),
+                child: ListTile(
+                    title: Text(users[index].navn),
+                    subtitle: Text(users[index].husnummer),
+
+                    onTap: () async {
+                      
+                      await Navigator.pushNamed(
+                          context, '/addResident', arguments: index);
+                      setState(() {});
+
+                    },
+
+                   ),
+
               );
+
             }),
           )
         ],

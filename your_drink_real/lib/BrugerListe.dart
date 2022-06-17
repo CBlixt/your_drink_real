@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_drink_real/brugerList.dart';
 import 'Bruger.dart';
+import 'Inventory/inventoryitem.dart';
+import 'LoadingUser.dart';
 import 'Users.dart';
+import 'package:your_drink_real/Inventory/inventoryList.dart';
 import 'addResident.dart';
 
 
@@ -31,6 +34,8 @@ class _BrugerListeState extends State<BrugerListe> {
   }
 
  List<Bruger> users =brugerList.users;
+
+  Bruger bruger = Bruger(navn: "",husnummer: "",debt: 0.0);
 
   final _formKey = GlobalKey<FormState>();
   final _codeKey1 = GlobalKey<FormState>();
@@ -75,7 +80,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                   child: InkResponse(
                                     onTap: () {
                                       Navigator.of(context).pop();
-                                    },
+                                    },/*
                                     child: IconButton(
                                       icon: Icon(
                                         Icons.close,
@@ -86,6 +91,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                         Navigator.pop(context);
                                       },
                                     ),
+                                    */
                                   ),
                                 ),
                                 Form(
@@ -140,7 +146,9 @@ class _BrugerListeState extends State<BrugerListe> {
                                                 admin = "Admin-profile";
                                                 firstTimeLoggingIn += 1;
                                                 kode = myController1.text;
-                                                print('kode' + kode);
+
+                                                Navigator.pop(context);
+
                                                 myController1.clear();
                                                 myController2.clear();
                                                 await Navigator.pushNamed(
@@ -172,7 +180,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                   child: InkResponse(
                                     onTap: () {
                                       Navigator.of(context).pop();
-                                    },
+                                    },/*
                                     child: IconButton(
                                       icon: Icon(
                                         Icons.close,
@@ -183,6 +191,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                         Navigator.pop(context);
                                       },
                                     ),
+                                    */
                                   ),
                                 ),
                                 Form(
@@ -219,16 +228,11 @@ class _BrugerListeState extends State<BrugerListe> {
                                             onPressed: () async {
                                               if (myController3.text == kode) {
                                                 myController3.clear();
-
+                                                Navigator.pop(context);
                                                 await Navigator.pushNamed(
                                                     context, '/adminIndstillinger');
                                                 setState((){});
                                                 setState((){});
-                                              } else {
-                                                print('con3: ' +
-                                                    myController3.text +
-                                                    ' kode: ' +
-                                                    kode);
                                               }
 
                                               setState((){});
@@ -254,7 +258,7 @@ class _BrugerListeState extends State<BrugerListe> {
             ],
           ),
           Expanded(
-            child:  FutureBuilder(
+            /*child:  FutureBuilder(
               future: ReadJsonData(),
               builder: (context, data) {
                 if (data.hasError) {
@@ -327,15 +331,26 @@ class _BrugerListeState extends State<BrugerListe> {
                 }
               },
             ),
-
+*/
             // Old code -------------------------------------------------------------------------------
-            /*
+
             child: ListView.builder(itemCount: users.length,itemBuilder: (context,index){
               return Card(
-                child: ListTile(title: Text(users[index].navn),subtitle: Text(users[index].husnummer),),
+                child: ListTile(
+                  title: Text(users[index].navn),
+                  subtitle: Text(users[index].husnummer),
+                  onTap: () async {
+                    Bruger instance = users[index];
+                    Navigator.push(
+                      context,MaterialPageRoute(builder: (context)=>LoadingUser(user:instance))
+                    );
+
+
+                  },
+                ),
               );
-            }), Old code -------------------------------------------------------------------------------
-            */
+            }), //Old code -------------------------------------------------------------------------------
+
           )
         ],
       ),
