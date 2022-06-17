@@ -140,7 +140,8 @@ class _BrugerListeState extends State<BrugerListe> {
                                             color: Colors.green[100],
                                             onPressed: () async {
                                               if (myController1.text ==
-                                                  myController2.text) {
+                                                  myController2.text && myController1.text.length==4 &&
+                                              myController2.text.length==4) {
                                                 //navigér til næste viindue
                                                 //ellers så kom med en "hov koden var ikke den samme" besked
                                                 admin = "Admin-profile";

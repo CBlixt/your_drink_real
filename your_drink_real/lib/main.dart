@@ -2,10 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:your_drink_real/Bruger.dart';
 import 'package:your_drink_real/BrugerListe.dart';
+import 'package:your_drink_real/Inventory/edit_inventory.dart';
 import 'package:your_drink_real/Loading.dart';
 import 'package:your_drink_real/BrugerListe.dart';
 import 'package:your_drink_real/AdminIndstillinger.dart';
 import 'package:your_drink_real/addResident.dart';
+
+import 'LoadingAdminEgenskaber.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -13,8 +16,9 @@ void main() {
     routes: {
       '/Loading': (context) => LoadingScreen(),
       '/home': (context) => BrugerListe(),
-      '/adminIndstillinger': (context) => AdminIndstillinger(),
+      '/adminIndstillinger': (context) => LoadingAdminEgenskaber(),
       '/addResident': (context) => addResident(),
+      '/editing': (context) => EditInventory(),
     },
   ));
 }
