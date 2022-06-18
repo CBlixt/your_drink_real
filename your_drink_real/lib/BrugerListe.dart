@@ -1,14 +1,19 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart' as rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:your_drink_real/FileManager.dart';
 import 'package:your_drink_real/brugerList.dart';
+import 'package:your_drink_real/residentKontoElementer/LoadingUser.dart';
 import 'Bruger.dart';
-import 'Inventory/inventoryitem.dart';
-import 'residentKontoElementer/LoadingUser.dart';
 import 'Users.dart';
 import 'package:your_drink_real/Inventory/inventoryList.dart';
 import 'addResident.dart';
+
+import 'dart:async' show Future;
+import 'package:path_provider/path_provider.dart';
+
 
 
 
@@ -20,17 +25,27 @@ class BrugerListe extends StatefulWidget {
   State<BrugerListe> createState() => _BrugerListeState();
 }
 
-
 class _BrugerListeState extends State<BrugerListe> {
 
-  Future<List<ProductDataModel>> ReadJsonData() async {
+
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    FileManager.loadJsonData();
+  }
+
+
+  Future<List<User>> ReadJsonData() async {
     //read json file
     final jsondata = await rootBundle.rootBundle.loadString('jsonfile/users.json');
     //decode json data as list
     final list = json.decode(jsondata) as List<dynamic>;
 
     //map json and initialize using DataModel
-    return list.map((e) => ProductDataModel.fromJson(e)).toList();
+    return list.map((e) => User.fromJson(e)).toList();
   }
 
  List<Bruger> users =brugerList.users;
@@ -50,6 +65,10 @@ class _BrugerListeState extends State<BrugerListe> {
 
   @override
   Widget build(BuildContext context) {
+
+    FileManager.loadJsonData();
+
+
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
@@ -255,11 +274,11 @@ class _BrugerListeState extends State<BrugerListe> {
                 height: 70,
                 color: Colors.green[300],
               ),
-
             ],
           ),
           Expanded(
-            /*child:  FutureBuilder(
+            /*
+            child:  FutureBuilder(
               future: ReadJsonData(),
               builder: (context, data) {
                 if (data.hasError) {
@@ -269,7 +288,7 @@ class _BrugerListeState extends State<BrugerListe> {
                   //once data is ready this else block will execute
                   // items will hold all the data of DataModel
                   //items[index].name can be used to fetch name of product as done below
-                  var items = data.data as List<ProductDataModel>;
+                  var items = data.data as List<User>;
                   return ListView.builder(
                       itemCount: items == null ? 0 : items.length,
                       itemBuilder: (context, index) {
@@ -334,17 +353,17 @@ class _BrugerListeState extends State<BrugerListe> {
             ),
 */
             // Old code -------------------------------------------------------------------------------
-
-            child: ListView.builder(itemCount: users.length,itemBuilder: (context,index){
+            child: ListView.builder(itemCount: FileManager.getData().length,itemBuilder: (context,index){
               return Card(
                 child: ListTile(
-                  title: Text(users[index].navn),
-                  subtitle: Text(users[index].husnummer),
+                  title: Text(FileManager.getData()[index].name ?? 'null'),
+
+                    subtitle: Text('værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}'),
                   onTap: () async {
-                    Bruger instance = users[index];
-                    Navigator.push(
-                      context,MaterialPageRoute(builder: (context)=>LoadingUser(user:instance))
-                    );
+                    User instance = FileManager.getData()[index];
+                   Navigator.push(
+                      context,MaterialPageRoute(builder: (context)=>LoadingUser(index: index,))
+                   );
 
 
                   },

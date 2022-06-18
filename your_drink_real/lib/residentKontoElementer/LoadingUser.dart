@@ -8,9 +8,11 @@ import 'SelectDrinks.dart';
 import 'MyStartPage.dart';
 
 class LoadingUser extends StatefulWidget {
+
   //const LoadingUser({Key? key, this.user, this.inventarListe, this.kurv}) : super(key: key);
-  const LoadingUser({Key? key, this.user}) : super(key: key);
+  const LoadingUser({Key? key, this.user, required this.index}) : super(key: key);
   final Bruger? user;
+  final int index;
 
   //final List<Drink>? kurv;
 
@@ -19,6 +21,7 @@ class LoadingUser extends StatefulWidget {
 }
 
 class _LoadingUserState extends State<LoadingUser> {
+
 
   int currentPageIndex = 0;
   double bottomHeight =60;
@@ -54,7 +57,7 @@ class _LoadingUserState extends State<LoadingUser> {
         controller: _pageController,
         children: //_screens,
         <Widget> [
-          MyStartPage(user:widget.user),
+          MyStartPage(user:widget.user, index:widget.index),
           SelectDrinks(kurv: kurv,),
           CartPage(kurv: kurv,),
         ],
