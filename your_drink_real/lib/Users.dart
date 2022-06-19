@@ -3,7 +3,7 @@ class User{
   //data Type
   String? id;
   String? name;
-  double? debt;
+  double debt = 0.0;
   String? imageURL;
   String? husnummer;
 
@@ -34,7 +34,7 @@ class User{
     name = json['name'];
     husnummer = json['husnummer'];
     imageURL = json['imageUrl'];
-    debt = json['debt'];
+    debt = json['debt'] ?? 0.0;
   }
 
 

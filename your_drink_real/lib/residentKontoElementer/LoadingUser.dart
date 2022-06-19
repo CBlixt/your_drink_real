@@ -59,7 +59,7 @@ class _LoadingUserState extends State<LoadingUser> {
         <Widget> [
           MyStartPage(user:widget.user, index:widget.index),
           SelectDrinks(kurv: kurv,),
-          CartPage(kurv: kurv,),
+          CartPage(kurv: kurv,index: widget.index,),
         ],
 
 

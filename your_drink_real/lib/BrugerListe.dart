@@ -357,7 +357,6 @@ class _BrugerListeState extends State<BrugerListe> {
               return Card(
                 child: ListTile(
                   title: Text(FileManager.getData()[index].name ?? 'null'),
-
                     subtitle: Text('værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}'),
                   onTap: () async {
                     User instance = FileManager.getData()[index];

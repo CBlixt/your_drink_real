@@ -24,10 +24,10 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green[100],
-      appBar: AppBar(
-        title: Text('Bruger-indstillinger'),
-        backgroundColor: Colors.green[200],
-      ),
+      //appBar: AppBar(
+      //  title: Text('Bruger-indstillinger'),
+      //  backgroundColor: Colors.green[200],
+      //),
       body: Column(
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [

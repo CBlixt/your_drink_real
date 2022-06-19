@@ -67,4 +67,11 @@ class FileManager {
     String encodedjson = jsonEncode(_data);
     await writeCounter(encodedjson);
   }
+
+  static void saveDebt(double debt, int index) async {
+    _data[index].debt += debt ;
+    String encodedjson = jsonEncode(_data);
+    await writeCounter(encodedjson);
+  }
+
 }

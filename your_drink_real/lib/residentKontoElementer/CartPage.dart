@@ -3,13 +3,16 @@ import 'package:your_drink_real/Inventory/inventoryList.dart';
 import 'package:your_drink_real/Inventory/inventoryitem.dart';
 
 import '../Bruger.dart';
+import '../FileManager.dart';
+import '../Users.dart';
 //import 'package:softp_selv_yd/Objects/Kurv.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({Key? key, this.user, this.drink, this.antal, this.kurv}) : super(key: key);
-  final Bruger? user;
+  const CartPage({Key? key, this.user, this.drink, this.antal, this.kurv,required this.index}) : super(key: key);
+  final User? user;
   final InventoryItem? drink;
   final int? antal;
+  final int? index;
   final List<InventoryItem>? kurv;
 
 
@@ -21,12 +24,28 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin {
 
+  void saveInfo(double debt, int index) async {
+      FileManager.saveDebt(debt, index);
+    Navigator.pop(context, {
+    });
+  }
+
+  double totalPrice() {
+    double totalPrice = 0;
+    int size = widget.kurv!.length;
+    for(int i = 0; i < size; i++) {
+     totalPrice += widget.kurv![i].price;
+    }
+    return totalPrice;
+  }
+
   //kurv kurv = new Kurv();
 
   //List<Drink?>? kurv =[];
   InventoryItem? selectedDrink;
   int? selectedIndex;
   double bottomHeight =60;
+
 
 
   @override
@@ -72,9 +91,7 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
                     color:Colors.green[400],
                     height: bottomHeight,
                     child: TextButton(
-                      onPressed: (){ },
-
-
+                      onPressed: (){saveInfo(totalPrice(), widget.index ?? 0);},
                       style: TextButton.styleFrom(
                         primary: Colors.green[900],
                       ),

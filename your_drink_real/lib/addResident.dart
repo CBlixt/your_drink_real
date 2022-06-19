@@ -18,33 +18,19 @@ class addResident extends StatefulWidget {
 
 class _addResident extends State<addResident> {
 
-
-
-  Future<List<User>> ReadJsonData() async {
-    //read json file
-    final jsondata = await rootBundle.loadString('jsonfile/users.json');
-    //decode json data as list
-    final list = json.decode(jsondata) as List<dynamic>;
-
-    //map json and initialize using DataModel
-    return list.map((e) => User.fromJson(e)).toList();
+  void saveInfo(User user, int index) async {
+    if (index == -1) {
+      FileManager.addUser(user);
+    } else {
+      FileManager.updateUser(user, index);
+    }
+    Navigator.pop(context, {
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
-
-    Future<List<User>> Users = ReadJsonData();
-
-    void saveInfo(User user, int index) async {
-      if (index == -1) {
-        FileManager.addUser(user);
-      } else {
-        FileManager.updateUser(user, index);
-      }
-      Navigator.pop(context, {
-      });
-    }
-
     final index = ModalRoute.of(context)!.settings.arguments as int;
 
     print(index);
@@ -58,7 +44,6 @@ class _addResident extends State<addResident> {
       print('new user');
     }
 
-    print(user.name);
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {saveInfo(user, index);},
@@ -79,7 +64,6 @@ class _addResident extends State<addResident> {
               border: OutlineInputBorder(),labelText: "${user.husnummer}"
           ),onSubmitted: (String value){
               user.husnummer=value;
-
           },),
           TextField(decoration: InputDecoration(
               border: OutlineInputBorder(),labelText: "${user.debt}"
