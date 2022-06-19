@@ -4,6 +4,7 @@ import 'package:your_drink_real/brugerList.dart';
 import 'package:your_drink_real/main.dart';
 
 import 'Bruger.dart';
+import 'FileManager.dart';
 
 class AdminIndstillinger extends StatefulWidget {
   const AdminIndstillinger({Key? key}) : super(key: key);
@@ -13,7 +14,6 @@ class AdminIndstillinger extends StatefulWidget {
 }
 
 class _AdminIndstillingerState extends State<AdminIndstillinger> {
-  List<Bruger> users = brugerList.users;
   final _formKeyAdmin = GlobalKey<FormState>();
   final _codeKeyAdmin1 = GlobalKey<FormState>();
   final _codeKeyAdmin2 = GlobalKey<FormState>();
@@ -36,9 +36,8 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
             ),
             FlatButton(
               onPressed: ()async {
-                users.add(Bruger(navn: "Navn", husnummer: "Væreselsnummer", debt: 0.0));
-                await Navigator.pushNamed(context, '/addResident',arguments:users.length-1);
-                setState((){});
+                await Navigator.pushNamed(context, '/addResident',arguments:-1);
+                setState((){ });
 
               },
               child: Text('Add a resident'),
@@ -50,14 +49,12 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
           ]),
 
           Expanded(
-            child: ListView.builder(itemCount: users.length,itemBuilder: (context,index){
+            child: ListView.builder(itemCount: FileManager.getData().length,itemBuilder: (context,index){
               return Card(
                 child: ListTile(
-                    title: Text(users[index].navn),
-                    subtitle: Text(users[index].husnummer),
-
+                    title: Text(FileManager.getData()[index].name ?? 'null'),
+                    subtitle: Text(FileManager.getData()[index].husnummer ?? 'null'),
                     onTap: () async {
-                      
                       await Navigator.pushNamed(
                           context, '/addResident', arguments: index);
                       setState(() {});

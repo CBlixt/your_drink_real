@@ -58,4 +58,13 @@ class FileManager {
     String encodedjson = jsonEncode(_data);
     await writeCounter(encodedjson);
   }
+
+  static void updateUser(User user, int index) async {
+    _data[index].debt = user.debt;
+    _data[index].husnummer = user.husnummer;
+    _data[index].name = user.name;
+    _data[index].imageURL = user.imageURL;
+    String encodedjson = jsonEncode(_data);
+    await writeCounter(encodedjson);
+  }
 }

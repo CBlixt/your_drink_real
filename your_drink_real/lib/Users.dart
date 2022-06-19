@@ -30,7 +30,7 @@ class User{
   //method that assign values to respective datatype vairables
   User.fromJson(Map<String,dynamic> json)
   {
-    id = (json['id']);
+    id = json['id'];
     name = json['name'];
     husnummer = json['husnummer'];
     imageURL = json['imageUrl'];

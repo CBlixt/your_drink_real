@@ -35,43 +35,64 @@ class _addResident extends State<addResident> {
 
     Future<List<User>> Users = ReadJsonData();
 
-    print(Users);
-
-
+    void saveInfo(User user, int index) async {
+      if (index == -1) {
+        FileManager.addUser(user);
+      } else {
+        FileManager.updateUser(user, index);
+      }
+      Navigator.pop(context, {
+      });
+    }
 
     final index = ModalRoute.of(context)!.settings.arguments as int;
-    Bruger bruger = brugerList.users[index];
+
+    print(index);
+
+    User user = User(id: 'id', name: 'name', imageURL: 'imageURL', husnummer: 'husnummer', debt: 0.0);
+
+
+    if (index != -1) {
+      User user = FileManager.getData()[index];
+    } else {
+      print('new user');
+    }
+
+    print(user.name);
     return Scaffold(
-      appBar: AppBar(title: Text("Enter resident-informations below:"),),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {saveInfo(user, index);},
+        icon: const Icon(Icons.save),
+        label: const Text('Add resident / Update information'),
+        backgroundColor: Colors.indigoAccent,
+      ),
+      appBar: AppBar(title: Text("Enter resident-informations below:"),
+        automaticallyImplyLeading: false,),
       body: Column(
         children: [
           TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),labelText: bruger.navn
+              border: OutlineInputBorder(),labelText: user.name
           ),onSubmitted: (String name){
-            bruger.navn=name;
+            user.name=name;
           },),
           TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),labelText: "${bruger.husnummer}"
+              border: OutlineInputBorder(),labelText: "${user.husnummer}"
           ),onSubmitted: (String value){
-              bruger.husnummer=value;
+              user.husnummer=value;
 
           },),
           TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),labelText: "${bruger.debt}"
+              border: OutlineInputBorder(),labelText: "${user.debt}"
           ),onSubmitted: (String value){
             try{
               var newValue = double.parse(value);
-              bruger.debt=newValue;
+              user.debt=newValue;
             }catch(err){
             }
-          },),
-        FloatingActionButton(onPressed: () {
-          User test = User(id: '4', name: 'joe', imageURL: 'lol', husnummer: 'husnummer', debt: 4.6);
-          FileManager.addUser(test);
+          },
+          ),],
 
-        },),],
-      ),
-    );
+    ),);
   }
 
 
