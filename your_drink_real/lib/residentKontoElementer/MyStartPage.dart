@@ -25,6 +25,7 @@ class _MyStartPageState extends State<MyStartPage> {
 
 
     return Scaffold(
+
       body: Container(
         child: Column(children: <Widget> [
           SizedBox(height: 50),

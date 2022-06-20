@@ -43,6 +43,7 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
+
       body:Container(
         child: Stack(
           children: [
@@ -96,7 +97,14 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
                       color:Colors.green[400],
                       height: bottomHeight,
                       child: TextButton(
-                        onPressed: _incrementCounter,
+                        onPressed: /*(){
+                          if(InventoryList.items[InventoryList.items.indexOf(selectedDrink!)].number!>_counter){
+                            setState(() {
+                              _counter++;
+                            });
+                          }
+
+                        },*/_incrementCounter,
                         child: const Icon(
                           Icons.add,
                           color: Colors.white,

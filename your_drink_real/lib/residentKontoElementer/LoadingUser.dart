@@ -50,8 +50,13 @@ class _LoadingUserState extends State<LoadingUser> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightGreen[200],
-        title: Text('YourDrink'),
+        centerTitle: true,
+        title: Image.asset(
+          'assets/AppBarTittle2.png',
+          fit: BoxFit.cover,
+          height: 45,
+        ),
+        backgroundColor: Colors.green[200],
       ),
       body: PageView(
         controller: _pageController,
