@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:your_drink_real/AdminFileManager.dart';
 import 'package:your_drink_real/BrugerListe.dart';
 import 'package:your_drink_real/FileManager.dart';
 import 'package:your_drink_real/main.dart';
@@ -15,7 +16,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState(){
     super.initState();
-    FileManager.loadJsonData();
+    AdminFileManager.loadJsonData();
     navigateHome();
   }
 
