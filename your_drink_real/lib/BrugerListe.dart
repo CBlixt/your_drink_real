@@ -13,6 +13,7 @@ import 'addResident.dart';
 
 import 'dart:async' show Future;
 import 'package:path_provider/path_provider.dart';
+import 'package:your_drink_real/InventoryFileManager.dart';
 
 
 
@@ -35,6 +36,8 @@ class _BrugerListeState extends State<BrugerListe> {
   void initState() {
     super.initState();
     FileManager.loadJsonData();
+    InventoryFileManager.loadJsonData();
+
   }
 
 
@@ -101,6 +104,8 @@ class _BrugerListeState extends State<BrugerListe> {
                               clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
+                                  width: 200,
+                                  height: 200,
                                   top: -35.0,
                                   right: 235.0,
                                   child: InkResponse(
@@ -201,6 +206,8 @@ class _BrugerListeState extends State<BrugerListe> {
                               clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
+                                  width: 200,
+                                  height: 200,
                                   top: -35.0,
                                   right: 235.0,
                                   child: InkResponse(
@@ -223,6 +230,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                 Form(
                                   key: _formKey,
                                   child: Column(
+
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       Padding(
