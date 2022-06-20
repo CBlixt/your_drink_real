@@ -68,6 +68,16 @@ class FileManager {
     await writeCounter(encodedjson);
   }
 
+  static void saveDrink(String drink1,String drink2,String drink3, int index) async{
+    _data[index].flag1=drink1;
+    _data[index].flag2=drink2;
+    _data[index].flag3=drink3;
+
+    String encodedjson = jsonEncode(_data);
+    await writeCounter(encodedjson);
+
+  }
+
   static void saveDebt(double debt, int index) async {
     _data[index].debt += debt ;
     String encodedjson = jsonEncode(_data);

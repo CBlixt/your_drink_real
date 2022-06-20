@@ -9,13 +9,14 @@ import 'package:your_drink_real/AdminIndstillinger.dart';
 import 'package:your_drink_real/addResident.dart';
 import 'package:your_drink_real/residentKontoElementer/LoadingUser.dart';
 import 'package:your_drink_real/residentKontoElementer/MyStartPage.dart';
+import 'package:your_drink_real/residentKontoElementer/shopdrink.dart';
 
 import 'LoadingAdminEgenskaber.dart';
 
 void main() {
   runApp(MaterialApp(
     initialRoute: '/Loading',
-    routes: {
+    routes: {'/shopdrink':(context)=>ShopDrink(),
       '/Loading': (context) => LoadingScreen(),
       '/home': (context) => BrugerListe(),
       '/adminIndstillinger': (context) => LoadingAdminEgenskaber(),

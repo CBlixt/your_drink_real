@@ -6,6 +6,9 @@ class User{
   double debt = 0.0;
   String? imageURL;
   String? husnummer;
+  String flag1 = "Add drink";
+  String flag2 = "Add drink";
+  String flag3 = "Add drink";
 
   //TODO: Save admin Code?
   //TODO: Use image path and not URL
@@ -35,6 +38,9 @@ class User{
     husnummer = json['husnummer'];
     imageURL = json['imageUrl'];
     debt = json['debt'] ?? 0.0;
+    flag1 = json['falg1'];
+    flag2 = json['falg2'];
+    flag3 = json['falg3'];
   }
 
 
@@ -44,7 +50,10 @@ class User{
       "name": this.name,
       "husnummer": this.husnummer,
       "imageURL": this.imageURL,
-      "debt": this.debt
+      "debt": this.debt,
+      "falg1":this.flag1,
+      "falg2":this.flag2,
+      "falg3":this.flag3
     };
   }
 }
