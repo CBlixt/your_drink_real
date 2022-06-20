@@ -20,8 +20,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   navigateHome() async{
-    await Future.delayed(Duration(milliseconds: 1500), () {});
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BrugerListe()));
+    await Future.delayed(Duration(milliseconds: 2500), () {});
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context)=>BrugerListe()));
   }
 
   @override
@@ -39,7 +42,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
               width: 250.0,
                 height: 250.0,
                 child: Image(image: AssetImage('assets/YourDrinkLogo.png'),
-            fit: BoxFit.cover))
+            fit: BoxFit.cover)
+            )
           ],
         ),
       ),

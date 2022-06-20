@@ -72,14 +72,21 @@ class _BrugerListeState extends State<BrugerListe> {
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
-        title: Text('List over residents'),
+        centerTitle: true,
+        title: Image.asset('assets/AppBarTittle2.png', fit: BoxFit.cover,height: 45,),
+
+
         backgroundColor: Colors.green[200],
       ),
       body: Column(
         children: [
+        //SizedBox(
+        //height: 10,),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               SizedBox(
                 height: 100,
               ),
@@ -119,11 +126,11 @@ class _BrugerListeState extends State<BrugerListe> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(9.0),
                                         child: Text('Create a 4-digit code:'),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(9.0),
                                         child: TextFormField(
                                           key: _codeKey1,
                                           controller: myController1,
@@ -136,7 +143,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(9.0),
                                         child: TextFormField(
                                           key: _codeKey2,
                                           controller: myController2,
@@ -149,7 +156,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(9.0),
                                         child: RaisedButton(
                                             child: Text(
                                               "Done",
@@ -161,9 +168,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                               if (myController1.text ==
                                                   myController2.text && myController1.text.length==4 &&
                                               myController2.text.length==4) {
-                                                //navigér til næste viindue
-                                                //ellers så kom med en "hov koden var ikke den samme" besked
-                                                admin = "Admin-profile";
+                                               admin = "Admin-profile";
                                                 firstTimeLoggingIn += 1;
                                                 kode = myController1.text;
 
@@ -172,7 +177,8 @@ class _BrugerListeState extends State<BrugerListe> {
                                                 myController1.clear();
                                                 myController2.clear();
                                                 await Navigator.pushNamed(
-                                                    context, '/adminIndstillinger');
+                                                    context,
+                                                    '/adminIndstillinger');
                                                 setState((){});
 
                                               }
@@ -269,13 +275,29 @@ class _BrugerListeState extends State<BrugerListe> {
                 },
                 child: Text(
                   admin,
+                  style: TextStyle(
+                      color: Colors.green[50],
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
                 minWidth: 350,
                 height: 70,
                 color: Colors.green[300],
               ),
+
             ],
           ),
+          /*Text(
+            'List over residents',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.green[900],
+                fontWeight: FontWeight.bold
+            ),
+
+          ),
+          SizedBox(height:10,),
+          */
           Expanded(
             /*
             child:  FutureBuilder(
@@ -356,8 +378,20 @@ class _BrugerListeState extends State<BrugerListe> {
             child: ListView.builder(itemCount: FileManager.getData().length,itemBuilder: (context,index){
               return Card(
                 child: ListTile(
-                  title: Text(FileManager.getData()[index].name ?? 'null'),
-                    subtitle: Text('værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}'),
+                  title: Text(
+                      FileManager.getData()[index].name ?? 'null',
+                    style: TextStyle(
+                        color: Colors.green[900],
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                    subtitle: Text(
+                      'værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}',
+                      style: TextStyle(
+                        color: Colors.green[900],
+
+                      ),
+                    ),
                   onTap: () async {
                     User instance = FileManager.getData()[index];
                    Navigator.push(
