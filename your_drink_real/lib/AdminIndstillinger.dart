@@ -40,7 +40,11 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
                 setState((){ });
 
               },
-              child: Text('Add a resident'),
+              child: Text(
+                'Add a resident',
+                style: TextStyle(
+                    color: Colors.green[50])
+              ),
               minWidth: 350,
               height: 70,
               color: Colors.green[300],
