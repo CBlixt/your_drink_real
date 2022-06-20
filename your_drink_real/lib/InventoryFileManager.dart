@@ -64,6 +64,12 @@ class InventoryFileManager {
     await writeCounter(encodedjson);
   }
 
+  static void updateInventoryCount() async {
+    String encodedjson = jsonEncode(_InventoryItems);
+    await writeCounter(encodedjson);
+  }
+
+
 
 
 }
