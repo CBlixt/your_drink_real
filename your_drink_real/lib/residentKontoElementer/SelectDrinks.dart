@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_drink_real/Inventory/inventoryList.dart';
 import 'package:your_drink_real/Inventory/inventoryitem.dart';
+import 'package:your_drink_real/InventoryFileManager.dart';
 
 class SelectDrinks extends StatefulWidget {
   const SelectDrinks({Key? key, this.kurv}) : super(key: key);
@@ -49,21 +50,21 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
               padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: InventoryList.items.length,
+                  itemCount: InventoryFileManager.getData().length,
                   itemBuilder: (context, index){
                     return Card(
                       color: selectedIndex == index ? Colors.green[200] : Colors.white,
                       child: ListTile(
                         onTap: () {
-                          InventoryItem instance = InventoryList.items[index];
+                          InventoryItem instance = InventoryFileManager.getData()[index];
                           selectedDrink = instance;
                           setState((){
                             selectedIndex=index;
                           });
                         },
                         selected: index == selectedDrink,
-                        title: Text(InventoryList.items[index].name),
-                        trailing: Text('${InventoryList.items[index].price} kr.'),
+                        title: Text(InventoryFileManager.getData()[index].name),
+                        trailing: Text('${InventoryFileManager.getData()[index].price} kr.'),
                       ),
                     );
                   }),

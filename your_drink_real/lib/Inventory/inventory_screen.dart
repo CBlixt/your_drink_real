@@ -3,8 +3,9 @@ import 'edit_inventory.dart';
 import 'inventoryList.dart';
 import 'inventoryitem.dart';
 import 'inventoryList.dart';
+import 'package:your_drink_real/InventoryFileManager.dart';
 
-List items = InventoryList.items;
+List items = InventoryFileManager.getData();
 
 class inventoryscreen extends StatefulWidget {
 
@@ -21,7 +22,6 @@ class _inventoryscreenState extends State<inventoryscreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text("Inventory"),),
       body: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context,index) {
@@ -42,8 +42,8 @@ class _inventoryscreenState extends State<inventoryscreen> {
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
         setState((){
-
-          items.add(InventoryItem(name: "New item nr. ${items.length+1} ", number: 0, price: 0.0, flag: "YourDrinkLogo.png"));
+          InventoryFileManager.addInventoryItem(InventoryItem(name: "New item nr. ${items.length+1} ", number: 0, price: 0.0, flag: "YourDrinkLogo.png"));
+          //items.add(InventoryItem(name: "New item nr. ${items.length+1} ", number: 0, price: 0.0, flag: "YourDrinkLogo.png"));
         });
       },child: Icon(Icons.add),
       ),

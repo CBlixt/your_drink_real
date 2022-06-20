@@ -2,15 +2,35 @@ import 'package:flutter/material.dart';
 import 'edit_inventory.dart';
 import 'inventoryList.dart';
 import 'inventoryitem.dart';
-class EditInventory extends StatelessWidget {
+import 'package:your_drink_real/InventoryFileManager.dart';
+class EditInventory extends StatefulWidget {
+
+  @override
+  State<EditInventory> createState() => _EditInventory();
+  }
+
+  class _EditInventory extends State<EditInventory> {
+
+  void updateItem(InventoryItem item, int index) async {
+  InventoryFileManager.updateInventoryItem(item, index);
+  Navigator.pop(context, {
+  });
+  }
 
 
   @override
   Widget build(BuildContext context) {
     final index = ModalRoute.of(context)!.settings.arguments as int;
-    InventoryItem item = InventoryList.items[index];
+    InventoryItem item = InventoryFileManager.getData()[index];
     return Scaffold(
-      appBar: AppBar(title: Text("Edit"),),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () { updateItem(item, index);},
+        icon: const Icon(Icons.save),
+        label: const Text('Add resident / Update information'),
+        backgroundColor: Colors.indigoAccent,
+      ),
+      appBar: AppBar(title: Text("Edit"),
+        automaticallyImplyLeading: false,),
       body: Column(
         children: [
           TextField(decoration: InputDecoration(
