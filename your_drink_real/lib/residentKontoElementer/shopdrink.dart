@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:your_drink_real/Inventory/inventoryitem.dart';
 import 'package:your_drink_real/Inventory/inventoryList.dart';
-List items = InventoryList.items;
+import 'package:your_drink_real/InventoryFileManager.dart';
+List items = InventoryFileManager.getData();
 class ShopDrink extends StatefulWidget {
 
 
