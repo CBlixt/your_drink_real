@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:your_drink_real/Inventory/inventoryitem.dart';
+import 'package:your_drink_real/InventoryFileManager.dart';
 import '../Bruger.dart';
 import 'package:flutter/src/widgets/page_view.dart';
 import 'package:your_drink_real/brugerList.dart';
@@ -38,9 +40,21 @@ class _MyStartPageState extends State<MyStartPage> {
           Visibility(visible:vis,
             child: Center(
               child: Row(children: [
-                IconButton(onPressed: (){}, icon: Icon(Icons.check)),
+                IconButton(onPressed: (){
+                  setState((){vis=!vis;
+                    var index =InventoryFileManager.getData().indexWhere((element) => element.name==pressName);
+                  InventoryItem updateItem =InventoryFileManager.getData()[index];
+                  updateItem.number-=number.round();
+                  InventoryFileManager.updateInventoryItem(updateItem, index);
+                  InventoryFileManager.updateInventoryCount();
+
+                  var newDebt = (updateItem.price*number.round());
+                  FileManager.saveDebt(newDebt, widget.index);
+
+                  });
+                }, icon: Icon(Icons.check)),
                 Text("${number.round()}"),
-                IconButton(onPressed: (){}, icon: Icon(Icons.clear))
+                IconButton(onPressed: (){setState((){vis=!vis;});}, icon: Icon(Icons.clear))
               ],),
             ),
           ),
