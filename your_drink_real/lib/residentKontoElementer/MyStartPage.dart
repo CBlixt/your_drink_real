@@ -47,7 +47,7 @@ class _MyStartPageState extends State<MyStartPage> {
                   InventoryFileManager.updateInventoryItem(updateItem, index);
                   InventoryFileManager.updateInventoryCount();
 
-                  var newDebt = FileManager.getData()[widget.index].debt+(updateItem.price*number.round());
+                  var newDebt = (updateItem.price*number.round());
                   FileManager.saveDebt(newDebt, widget.index);
 
                   });
