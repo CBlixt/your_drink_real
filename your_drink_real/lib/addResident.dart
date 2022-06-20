@@ -45,18 +45,25 @@ class _addResident extends State<addResident> {
     }
 
     return Scaffold(
+backgroundColor: Colors.green[50],
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {saveInfo(user, index);},
         icon: const Icon(Icons.save),
-        label: const Text('Add resident / Update information'),
-        backgroundColor: Colors.indigoAccent,
+        label: const Text('Add resident / Update information',),
+        backgroundColor: Colors.green[300],
       ),
-      appBar: AppBar(title: Text("Enter resident-informations below:"),
-        automaticallyImplyLeading: false,),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset('assets/AppBarTittle2.png', fit: BoxFit.cover,height: 45,),
+        backgroundColor: Colors.green[200],
+      ),
       body: Column(
         children: [
+          SizedBox(height: 15,),
+          Text('Enter resident-information below:',style: TextStyle(fontStyle: FontStyle.italic, fontSize: 17,color: Colors.green[900]),),
+          SizedBox(height: 15,),
           TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),labelText: user.name
+              border: OutlineInputBorder(),labelText: user.name,
           ),onSubmitted: (String name){
             user.name=name;
           },),

@@ -24,5 +24,6 @@ void main() {
       '/MyStartPage': (context) => MyStartPage(index: 0,),
       '/LoadingUser': (context) => LoadingUser(index: 0,),
     },
+
   ));
 }

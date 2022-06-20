@@ -44,8 +44,9 @@ class _LoadingAdminEgenskaberState extends State<LoadingAdminEgenskaber> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightGreen[200],
-        title: Text('YourDrink'),
+        centerTitle: true,
+        title: Image.asset('assets/AppBarTittle2.png', fit: BoxFit.cover,height: 45,),
+        backgroundColor: Colors.green[200],
       ),
       body: PageView(
         controller: _pageController,
@@ -61,7 +62,6 @@ class _LoadingAdminEgenskaberState extends State<LoadingAdminEgenskaber> {
         physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(
-
         backgroundColor: Colors.white,
         onTap: _onItemTapped,
         items: [
@@ -69,13 +69,15 @@ class _LoadingAdminEgenskaberState extends State<LoadingAdminEgenskaber> {
             icon: Icon(Icons.home,
               color: _selectedIndex == 0 ? Colors.green : Colors.black,
             ),
-            label: 'Home',
+            label: 'Resident',
+
+
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.water_drop,
               color: _selectedIndex == 1 ? Colors.green : Colors.black,
             ),
-            label: 'Drikkevarer',
+            label: 'Inventory',
           ),
 
 

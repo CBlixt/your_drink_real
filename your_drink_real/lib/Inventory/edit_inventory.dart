@@ -23,23 +23,58 @@ class EditInventory extends StatefulWidget {
     final index = ModalRoute.of(context)!.settings.arguments as int;
     InventoryItem item = InventoryFileManager.getData()[index];
     return Scaffold(
+      backgroundColor: Colors.green[100],
+
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () { updateItem(item, index);},
         icon: const Icon(Icons.save),
-        label: const Text('Add resident / Update information'),
-        backgroundColor: Colors.indigoAccent,
+        label: const Text('Update information'),
+        backgroundColor: Colors.green[300],
       ),
-      appBar: AppBar(title: Text("Edit"),
-        automaticallyImplyLeading: false,),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset('assets/AppBarTittle2.png', fit: BoxFit.cover,height: 45,),
+        backgroundColor: Colors.green[200],
+      ),
+
       body: Column(
         children: [
-          TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),labelText: item.name
-          ),onSubmitted: (String name){
-            item.name=name;
-          },),
-          TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),labelText: "${item.number}"
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+              'Edit inventory-item:',
+            style: TextStyle(
+              color: Colors.green[900],
+              fontSize: 20,
+              fontStyle: FontStyle.italic
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            color:Colors.white,
+            child: TextField(decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: 'Enter item-name (currently: '+item.name+')',
+            labelStyle: TextStyle(
+
+                fontSize: 15
+            ),
+          ),
+
+            onSubmitted: (String name){
+              item.name=name;
+            },),),
+      Container(
+        color:Colors.white,
+          child:TextField(decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Enter number of items (currently: ${item.number})",
+            labelStyle: TextStyle(
+                fontSize: 15
+            ),
           ),onSubmitted: (String value){
             try{
               var newValue = int.parse(value);
@@ -48,8 +83,15 @@ class EditInventory extends StatefulWidget {
 
             }
           },),
-          TextField(decoration: InputDecoration(
-              border: OutlineInputBorder(),labelText: "${item.price}"
+      ),
+      Container(
+        color:Colors.white,
+        child:TextField(decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Enter item-price (currently: ${item.price})",
+              labelStyle: TextStyle(
+              fontSize: 15
+          ),
           ),onSubmitted: (String value){
             try{
               var newValue = double.parse(value);
@@ -57,7 +99,10 @@ class EditInventory extends StatefulWidget {
             }catch(err){
 
             }
-          },),],
+          },
+        ),
+      ),
+        ],
       ),
     );
   }

@@ -389,14 +389,14 @@ class _BrugerListeState extends State<BrugerListe> {
                   title: Text(
                       FileManager.getData()[index].name ?? 'null',
                     style: TextStyle(
-                        color: Colors.green[900],
-                      fontWeight: FontWeight.bold
+                       // color: Colors.green[900],
+                      //fontWeight: FontWeight.bold
                     ),
                   ),
                     subtitle: Text(
                       'værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}',
                       style: TextStyle(
-                        color: Colors.green[900],
+                        //color: Colors.green[900],
 
                       ),
                     ),
