@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_drink_real/Inventory/inventoryList.dart';
 import 'package:your_drink_real/Inventory/inventoryitem.dart';
+import 'package:your_drink_real/InventoryFileManager.dart';
 
 import '../Bruger.dart';
 import '../FileManager.dart';
@@ -26,6 +27,7 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
 
   void saveInfo(double debt, int index) async {
       FileManager.saveDebt(debt, index);
+      updateCount();
     Navigator.pop(context, {
     });
   }
@@ -37,6 +39,17 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
      totalPrice += widget.kurv![i].price;
     }
     return totalPrice;
+  }
+
+  void updateCount() {
+    for(int i = 0; i < widget.kurv!.length; i++ ) {
+      for(int h = 0; h < InventoryFileManager.getData().length; h++) {
+        if(widget.kurv![i].name == InventoryFileManager.getData()[h].name) {
+          InventoryFileManager.getData()[h].number += -1;
+        }
+      }
+    }
+    InventoryFileManager.updateInventoryCount();
   }
 
   //kurv kurv = new Kurv();

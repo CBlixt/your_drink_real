@@ -15,10 +15,6 @@ import 'dart:async' show Future;
 import 'package:path_provider/path_provider.dart';
 import 'package:your_drink_real/InventoryFileManager.dart';
 
-
-
-
-
 class BrugerListe extends StatefulWidget {
   const BrugerListe({Key? key}) : super(key: key);
 
@@ -27,23 +23,17 @@ class BrugerListe extends StatefulWidget {
 }
 
 class _BrugerListeState extends State<BrugerListe> {
-
-
-
-
-
   @override
   void initState() {
     super.initState();
     FileManager.loadJsonData();
     InventoryFileManager.loadJsonData();
-
   }
 
-
-  Future<List<User>> ReadJsonData() async {
+  Future<List<User>> readJsonData() async {
     //read json file
-    final jsondata = await rootBundle.rootBundle.loadString('jsonfile/users.json');
+    final jsondata =
+        await rootBundle.rootBundle.loadString('jsonfile/users.json');
     //decode json data as list
     final list = json.decode(jsondata) as List<dynamic>;
 
@@ -51,9 +41,9 @@ class _BrugerListeState extends State<BrugerListe> {
     return list.map((e) => User.fromJson(e)).toList();
   }
 
- List<Bruger> users =brugerList.users;
+  List<Bruger> users = brugerList.users;
 
-  Bruger bruger = Bruger(navn: "",husnummer: "",debt: 0.0);
+  Bruger bruger = Bruger(navn: "", husnummer: "", debt: 0.0);
 
   final _formKey = GlobalKey<FormState>();
   final _codeKey1 = GlobalKey<FormState>();
@@ -68,29 +58,28 @@ class _BrugerListeState extends State<BrugerListe> {
 
   @override
   Widget build(BuildContext context) {
-
     FileManager.loadJsonData();
-
 
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
         centerTitle: true,
-        title: Image.asset('assets/AppBarTittle2.png', fit: BoxFit.cover,height: 45,),
-
-
+        title: Image.asset(
+          'assets/AppBarTittle2.png',
+          fit: BoxFit.cover,
+          height: 45,
+        ),
         backgroundColor: Colors.green[200],
       ),
       body: Column(
         children: [
-        //SizedBox(
-        //height: 10,),
+          //SizedBox(
+          //height: 10,),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
               FlatButton(
@@ -111,18 +100,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                   child: InkResponse(
                                     onTap: () {
                                       Navigator.of(context).pop();
-                                    },/*
-                                    child: IconButton(
-                                      icon: Icon(
-                                        Icons.close,
-                                        color: Colors.red,
-                                        size: 25,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    */
+                                    },
                                   ),
                                 ),
                                 Form(
@@ -130,50 +108,50 @@ class _BrugerListeState extends State<BrugerListe> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsets.all(9.0),
                                         child: Text('Create a 4-digit code:'),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.all(9.0),
+                                        padding: const EdgeInsets.all(9.0),
                                         child: TextFormField(
                                           key: _codeKey1,
                                           controller: myController1,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText: 'Enter code'),
                                           keyboardType: TextInputType.number,
                                           inputFormatters: [
-                                            FilteringTextInputFormatter.digitsOnly
+                                            FilteringTextInputFormatter
+                                                .digitsOnly
                                           ],
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.all(9.0),
+                                        padding: const EdgeInsets.all(9.0),
                                         child: TextFormField(
                                           key: _codeKey2,
                                           controller: myController2,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText: 'Enter code again'),
                                           keyboardType: TextInputType.number,
                                           inputFormatters: [
-                                            FilteringTextInputFormatter.digitsOnly
+                                            FilteringTextInputFormatter
+                                                .digitsOnly
                                           ],
                                         ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(9.0),
                                         child: RaisedButton(
-                                            child: Text(
-                                              "Done",
-                                              style: TextStyle(
-                                                  color: Colors.green[900]),
-                                            ),
                                             color: Colors.green[100],
                                             onPressed: () async {
                                               if (myController1.text ==
-                                                  myController2.text && myController1.text.length==4 &&
-                                              myController2.text.length==4) {
-                                               admin = "Admin-profile";
+                                                      myController2.text &&
+                                                  myController1.text.length ==
+                                                      4 &&
+                                                  myController2.text.length ==
+                                                      4) {
+                                                admin = "Admin-profile";
                                                 firstTimeLoggingIn += 1;
                                                 kode = myController1.text;
 
@@ -184,11 +162,14 @@ class _BrugerListeState extends State<BrugerListe> {
                                                 await Navigator.pushNamed(
                                                     context,
                                                     '/adminIndstillinger');
-                                                setState((){});
-
+                                                setState(() {});
                                               }
-
-                                            }),
+                                            },
+                                            child: Text(
+                                              "Done",
+                                              style: TextStyle(
+                                                  color: Colors.green[900]),
+                                            )),
                                       ),
                                     ],
                                   ),
@@ -213,7 +194,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                   child: InkResponse(
                                     onTap: () {
                                       Navigator.of(context).pop();
-                                    },/*
+                                    }, /*
                                     child: IconButton(
                                       icon: Icon(
                                         Icons.close,
@@ -230,47 +211,47 @@ class _BrugerListeState extends State<BrugerListe> {
                                 Form(
                                   key: _formKey,
                                   child: Column(
-
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: Text('Enter admin-code'),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         child: TextFormField(
                                           key: _codeKey3,
                                           controller: myController3,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText: 'Enter code'),
                                           keyboardType: TextInputType.number,
                                           inputFormatters: [
-                                            FilteringTextInputFormatter.digitsOnly
+                                            FilteringTextInputFormatter
+                                                .digitsOnly
                                           ],
                                         ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: RaisedButton(
-                                            child: Text(
-                                              "Done",
-                                              style: TextStyle(
-                                                  color: Colors.green[900]),
-                                            ),
                                             color: Colors.green[100],
                                             onPressed: () async {
                                               if (myController3.text == kode) {
                                                 myController3.clear();
                                                 Navigator.pop(context);
                                                 await Navigator.pushNamed(
-                                                    context, '/adminIndstillinger');
-                                                setState((){});
-                                                setState((){});
+                                                    context,
+                                                    '/adminIndstillinger');
+                                                setState(() {});
+                                                setState(() {});
                                               }
-
-                                              setState((){});
-                                            }),
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              "Done",
+                                              style: TextStyle(
+                                                  color: Colors.green[900]),
+                                            )),
                                       ),
                                     ],
                                   ),
@@ -281,137 +262,47 @@ class _BrugerListeState extends State<BrugerListe> {
                         });
                   }
                 },
-                child: Text(
-                  admin,
-                  style: TextStyle(
-                      color: Colors.green[50],
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
                 minWidth: 350,
                 height: 70,
                 color: Colors.green[300],
+                child: Text(
+                  admin,
+                  style: TextStyle(
+                      color: Colors.green[50], fontWeight: FontWeight.bold),
+                ),
               ),
-
             ],
           ),
-          /*Text(
-            'List over residents',
-            style: TextStyle(
-                fontSize: 20,
-                color: Colors.green[900],
-                fontWeight: FontWeight.bold
-            ),
-
-          ),
-          SizedBox(height:10,),
-          */
           Expanded(
-            /*
-            child:  FutureBuilder(
-              future: ReadJsonData(),
-              builder: (context, data) {
-                if (data.hasError) {
-                  //in case if error found
-                  return Center(child: Text("${data.error}"));
-                } else if (data.hasData) {
-                  //once data is ready this else block will execute
-                  // items will hold all the data of DataModel
-                  //items[index].name can be used to fetch name of product as done below
-                  var items = data.data as List<User>;
-                  return ListView.builder(
-                      itemCount: items == null ? 0 : items.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            print(':)');
-                          },
-                          child: Card(
-                            elevation: 5,
-                            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                            child: Container(
-                              padding: EdgeInsets.all(8),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 50,
-                                    height: 50,
-                                    child: Image(
-                                      image:
-                                      NetworkImage(items[index].imageURL.toString()),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                  Expanded(
-                                      child: Container(
-                                        padding: EdgeInsets.only(bottom: 8),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 8, right: 8),
-                                              child: Text(
-                                                items[index].name.toString(),
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 8, right: 8),
-                                              child: Text('husnummer: ${items[index].husnummer.toString()}'),
-                                            )
-                                          ],
-                                        ),
-                                      ))
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      });
-                } else {
-                  // show circular progress while data is getting fetched from json file
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-*/
-            // Old code -------------------------------------------------------------------------------
-            child: ListView.builder(itemCount: FileManager.getData().length,itemBuilder: (context,index){
-              return Card(
-                child: ListTile(
-                  title: Text(
-                      FileManager.getData()[index].name ?? 'null',
-                    style: TextStyle(
-                       // color: Colors.green[900],
-                      //fontWeight: FontWeight.bold
-                    ),
-                  ),
-                    subtitle: Text(
-                      'værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}',
-                      style: TextStyle(
-                        //color: Colors.green[900],
-
+            child: ListView.builder(
+                itemCount: FileManager.getData().length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      title: Text(
+                        FileManager.getData()[index].name ?? 'null',
+                        style: TextStyle(
+                            color: Colors.green[900],
+                            fontWeight: FontWeight.bold),
                       ),
+                      subtitle: Text(
+                        'værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}',
+                        style: TextStyle(
+                          color: Colors.green[900],
+                        ),
+                      ),
+                      onTap: () async {
+                        User instance = FileManager.getData()[index];
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoadingUser(
+                                      index: index,
+                                    )));
+                      },
                     ),
-                  onTap: () async {
-                    User instance = FileManager.getData()[index];
-                   Navigator.push(
-                      context,MaterialPageRoute(builder: (context)=>LoadingUser(index: index,))
-                   );
-
-
-                  },
-                ),
-              );
-            }), //Old code -------------------------------------------------------------------------------
-
+                  );
+                }),
           )
         ],
       ),

@@ -58,5 +58,18 @@ class InventoryFileManager {
     await writeCounter(encodedjson);
   }
 
+  static void deleteInventoryItem(int index) async {
+    _InventoryItems.remove(_InventoryItems[index]);
+    String encodedjson = jsonEncode(_InventoryItems);
+    await writeCounter(encodedjson);
+  }
+
+  static void updateInventoryCount() async {
+    String encodedjson = jsonEncode(_InventoryItems);
+    await writeCounter(encodedjson);
+  }
+
+
+
 
 }
