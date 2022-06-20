@@ -94,6 +94,8 @@ class _BrugerListeState extends State<BrugerListe> {
                               clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
+                                  width: 200,
+                                  height: 200,
                                   top: -35.0,
                                   right: 235.0,
                                   child: InkResponse(
@@ -195,6 +197,8 @@ class _BrugerListeState extends State<BrugerListe> {
                               clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
+                                  width: 200,
+                                  height: 200,
                                   top: -35.0,
                                   right: 235.0,
                                   child: InkResponse(
@@ -217,6 +221,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                 Form(
                                   key: _formKey,
                                   child: Column(
+
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       Padding(
