@@ -51,7 +51,7 @@ class _inventoryscreenState extends State<inventoryscreen> {
             child: ListTile(title: Text(items[index].name+" x ${items[index].number}"),
               subtitle: Text("${items[index].price} kr."),
               trailing: IconButton(icon: Icon(Icons.delete),onPressed: (){
-                setState((){items.remove(items[index]);});
+                setState((){InventoryFileManager.deleteInventoryItem(index);});
               },),
               onTap: () async {
                 await Navigator.pushNamed(context, "/editing",arguments: index);

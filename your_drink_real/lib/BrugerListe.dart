@@ -280,15 +280,12 @@ class _BrugerListeState extends State<BrugerListe> {
                   return Card(
                     child: ListTile(
                       title: Text(
-                        FileManager.getData()[index].name ?? 'null',
-                        style: TextStyle(
-                            color: Colors.green[900],
-                            fontWeight: FontWeight.bold),
+                        FileManager.getData()[index].name ?? 'null'
                       ),
                       subtitle: Text(
                         'værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}',
                         style: TextStyle(
-                          color: Colors.green[900],
+
                         ),
                       ),
                       onTap: () async {
