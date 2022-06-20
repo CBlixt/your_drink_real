@@ -17,7 +17,7 @@ class MyStartPage extends StatefulWidget {
 }
 
 class _MyStartPageState extends State<MyStartPage> {
-  double number =0;
+  double number =1;
   String? pressName;
 
   Color presColor = Colors.lightGreenAccent;
@@ -27,15 +27,42 @@ class _MyStartPageState extends State<MyStartPage> {
 
 
     return Scaffold(
-
+backgroundColor: Colors.green[100],
       body: Container(
         child: Column(children: <Widget> [
           SizedBox(height: 50),
-          Text("Hej ${FileManager.getData()[widget.index].name}",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic )),
-          SizedBox(height: 40),
-          Text("Din gæld er: ${FileManager.getData()[widget.index].debt} kr.",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold )),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                text: "Hej ${FileManager.getData()[widget.index].name}",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic,color: Colors.green[900] )
+              )
+               ]
+
+            ),
+          ),
+           SizedBox(height: 40),
+          RichText(
+            text: TextSpan(
+                children: [
+                  TextSpan(
+                      text: "Din gæld er: ",
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.green[900])
+                  ),
+                  TextSpan(
+                    text: "${FileManager.getData()[widget.index].debt}",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.orange )
+                  ),
+                  TextSpan(
+                    text: " kr.",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.green[900] )
+                  )
+                ]
+
+            ),
+          ),
+
           SizedBox(height: 100,),
           Visibility(visible:vis,
             child: Center(
@@ -59,16 +86,20 @@ class _MyStartPageState extends State<MyStartPage> {
             ),
           ),
           Visibility(visible: vis,
-            child: Slider( onChanged: (newNumber){
+            child: Slider(
+              inactiveColor: Colors.green[900],
+              activeColor: Colors.green[400],
+              onChanged: (newNumber){
               setState((){number =newNumber;
               });
-            },min: 0,max: 4, value: number,),
+            },min: 1,max: 4, value: number,),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
                 child: RaisedButton(
-                  child: Text("${FileManager.getData()[widget.index].flag1}"),
+                  child: Text("${FileManager.getData()[widget.index].flag1}",style: TextStyle(color: Colors.green[900],fontWeight: FontWeight.bold),),
                   onPressed: () async {
 
                     if(FileManager.getData()[widget.index].flag1=="Add drink"){
@@ -97,11 +128,12 @@ class _MyStartPageState extends State<MyStartPage> {
                     FileManager.saveDrink(flag.toString(), FileManager.getData()[widget.index].flag2, FileManager.getData()[widget.index].flag3, widget.index);
                   });
                 },
+                  color: Colors.green[50],
                 ),
               ),
               Expanded(
                 child: RaisedButton(
-                  child: Text("${FileManager.getData()[widget.index].flag2}"),
+                  child: Text("${FileManager.getData()[widget.index].flag2}",style: TextStyle(color: Colors.green[900],fontWeight: FontWeight.bold),),
                   onPressed: () async {
 
                     if(FileManager.getData()[widget.index].flag2=="Add drink"){
@@ -129,11 +161,12 @@ class _MyStartPageState extends State<MyStartPage> {
                       FileManager.saveDrink( FileManager.getData()[widget.index].flag1,flag.toString(), FileManager.getData()[widget.index].flag3, widget.index);
                     });
                   },
+                  color: Colors.green[50],
                 ),
               ),
               Expanded(
                 child: RaisedButton(
-                  child: Text("${FileManager.getData()[widget.index].flag3}"),
+                  child: Text("${FileManager.getData()[widget.index].flag3}",style: TextStyle(color: Colors.green[900],fontWeight: FontWeight.bold), ),
                   onPressed: () async {
 
                     if(FileManager.getData()[widget.index].flag3=="Add drink"){
@@ -159,6 +192,7 @@ class _MyStartPageState extends State<MyStartPage> {
                     FileManager.saveDrink(FileManager.getData()[widget.index].flag1, FileManager.getData()[widget.index].flag2,flag.toString(), widget.index);
                   });
                 },
+                  color: Colors.green[50],
                 ),
               )
             ],
