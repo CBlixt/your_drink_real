@@ -12,6 +12,7 @@ import 'package:your_drink_real/residentKontoElementer/MyStartPage.dart';
 import 'package:your_drink_real/residentKontoElementer/shopdrink.dart';
 
 import 'LoadingAdminEgenskaber.dart';
+import 'editResident.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -21,6 +22,7 @@ void main() {
       '/home': (context) => BrugerListe(),
       '/adminIndstillinger': (context) => LoadingAdminEgenskaber(),
       '/addResident': (context) => addResident(),
+      '/editResident': (context) => editResident(),
       '/editing': (context) => EditInventory(),
       '/MyStartPage': (context) => MyStartPage(index: 0,),
       '/LoadingUser': (context) => LoadingUser(index: 0,),

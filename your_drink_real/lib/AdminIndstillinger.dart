@@ -24,10 +24,6 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green[100],
-      //appBar: AppBar(
-      //  title: Text('Bruger-indstillinger'),
-      //  backgroundColor: Colors.green[200],
-      //),
       body: Column(
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -60,7 +56,7 @@ class _AdminIndstillingerState extends State<AdminIndstillinger> {
                     subtitle: Text(FileManager.getData()[index].husnummer ?? 'null'),
                     onTap: () async {
                       await Navigator.pushNamed(
-                          context, '/addResident', arguments: index);
+                          context, '/editResident', arguments: index);
                       setState(() {});
 
                     },
