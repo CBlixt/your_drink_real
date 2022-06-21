@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:your_drink_real/brugerList.dart';
 
 import 'package:your_drink_real/main.dart';
 

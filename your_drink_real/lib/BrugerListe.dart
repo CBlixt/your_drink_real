@@ -1,18 +1,12 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/services.dart' as rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_drink_real/FileManager.dart';
-import 'package:your_drink_real/brugerList.dart';
 import 'package:your_drink_real/residentKontoElementer/LoadingUser.dart';
-import 'Bruger.dart';
 import 'Users.dart';
-import 'package:your_drink_real/Inventory/inventoryList.dart';
-import 'addResident.dart';
 
 import 'dart:async' show Future;
-import 'package:path_provider/path_provider.dart';
 import 'package:your_drink_real/InventoryFileManager.dart';
 import 'package:your_drink_real/AdminFileManager.dart';
 
@@ -42,8 +36,6 @@ class _BrugerListeState extends State<BrugerListe> {
     return list.map((e) => User.fromJson(e)).toList();
   }
 
-  List<Bruger> users = brugerList.users;
-
   final _formKey = GlobalKey<FormState>();
   final _codeKey1 = GlobalKey<FormState>();
   final _codeKey2 = GlobalKey<FormState>();
@@ -56,7 +48,6 @@ class _BrugerListeState extends State<BrugerListe> {
   @override
   Widget build(BuildContext context) {
     FileManager.loadJsonData();
-
 
     return Scaffold(
       backgroundColor: Colors.green[100],
@@ -91,7 +82,6 @@ class _BrugerListeState extends State<BrugerListe> {
                                 Positioned(
                                   width: 5,
                                   height: 500,
-
                                   child: InkResponse(
                                     onTap: () {
                                       Navigator.of(context).pop();
@@ -102,7 +92,6 @@ class _BrugerListeState extends State<BrugerListe> {
                                   key: _formKey,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
-
                                     children: <Widget>[
                                       const Padding(
                                         padding: EdgeInsets.all(9.0),
@@ -148,18 +137,26 @@ class _BrugerListeState extends State<BrugerListe> {
                                                   myController2.text.length ==
                                                       4) {
                                                 admin = "Admin-profile";
-                                                print(AdminFileManager.getData());
-                                                var n1 = int.parse(myController1.text);
-                                                AdminFileManager.updateAdminCode(n1);
+                                                print(
+                                                    AdminFileManager.getData());
+                                                var n1 = int.parse(
+                                                    myController1.text);
+                                                AdminFileManager
+                                                    .updateAdminCode(n1);
 
                                                 Navigator.pop(context);
-                                                print(AdminFileManager.getData()[0].code);
-                                                myController1.text='';
-                                                myController2.text='';
+                                                print(AdminFileManager
+                                                        .getData()[0]
+                                                    .code);
+                                                myController1.text = '';
+                                                myController2.text = '';
                                                 await Navigator.pushNamed(
                                                     context,
                                                     '/adminIndstillinger');
-                                                setState(() {AdminFileManager.updateAdminCode(n1);});
+                                                setState(() {
+                                                  AdminFileManager
+                                                      .updateAdminCode(n1);
+                                                });
                                               }
                                             },
                                             child: Text(
@@ -210,7 +207,8 @@ class _BrugerListeState extends State<BrugerListe> {
                                               labelText: 'Enter code'),
                                           keyboardType: TextInputType.number,
                                           inputFormatters: [
-                                            FilteringTextInputFormatter.digitsOnly
+                                            FilteringTextInputFormatter
+                                                .digitsOnly
                                           ],
                                         ),
                                       ),
@@ -219,7 +217,10 @@ class _BrugerListeState extends State<BrugerListe> {
                                         child: RaisedButton(
                                             color: Colors.green[100],
                                             onPressed: () async {
-                                              if (myController3.text == AdminFileManager.getData()[0].code.toString()) {
+                                              if (myController3.text ==
+                                                  AdminFileManager.getData()[0]
+                                                      .code
+                                                      .toString()) {
                                                 myController3.clear();
                                                 Navigator.pop(context);
                                                 await Navigator.pushNamed(
@@ -262,14 +263,10 @@ class _BrugerListeState extends State<BrugerListe> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      title: Text(
-                        FileManager.getData()[index].name ?? 'null'
-                      ),
+                      title: Text(FileManager.getData()[index].name ?? 'null'),
                       subtitle: Text(
                         'værelsesnummer: ${FileManager.getData()[index].husnummer ?? 1.0}',
-                        style: TextStyle(
-
-                        ),
+                        style: TextStyle(),
                       ),
                       onTap: () async {
                         User instance = FileManager.getData()[index];

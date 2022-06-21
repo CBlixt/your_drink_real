@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:your_drink_real/AdminFileManager.dart';
 import 'package:your_drink_real/BrugerListe.dart';
 import 'package:your_drink_real/FileManager.dart';
-import 'package:your_drink_real/main.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);
@@ -22,11 +21,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   navigateHome() async{
-    await Future.delayed(Duration(milliseconds: 2500), () {});
+    await Future.delayed(const Duration(milliseconds: 2500), () {});
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context)=>BrugerListe()));
+            builder: (context)=>const BrugerListe()));
   }
 
   @override

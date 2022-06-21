@@ -1,5 +1,4 @@
-
-class User{
+class User {
   //data Type
   String? id;
   String? name;
@@ -16,23 +15,19 @@ class User{
   //TODO: Update users debt after transaction
   //TODO: Save user file after user makes a transaction
 
-
   //TODO: possibly make inventory also use json file
 
 // constructor
-  User(
-      {
-        required this.id,
-        required this.name,
-        required this.imageURL,
-        required this.husnummer,
-        required this.debt,
-      }
-      );
+  User({
+    required this.id,
+    required this.name,
+    required this.imageURL,
+    required this.husnummer,
+    required this.debt,
+  });
 
   //method that assign values to respective datatype vairables
-  User.fromJson(Map<String,dynamic> json)
-  {
+  User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     husnummer = json['husnummer'];
@@ -43,7 +38,6 @@ class User{
     flag3 = json['falg3'];
   }
 
-
   Map<String, dynamic> toJson() {
     return {
       "id": this.id,
@@ -51,9 +45,9 @@ class User{
       "husnummer": this.husnummer,
       "imageURL": this.imageURL,
       "debt": this.debt,
-      "falg1":this.flag1,
-      "falg2":this.flag2,
-      "falg3":this.flag3
+      "falg1": this.flag1,
+      "falg2": this.flag2,
+      "falg3": this.flag3
     };
   }
 }

@@ -3,7 +3,6 @@ import 'package:your_drink_real/Inventory/inventoryitem.dart';
 import 'package:your_drink_real/InventoryFileManager.dart';
 import '../Bruger.dart';
 import 'package:flutter/src/widgets/page_view.dart';
-import 'package:your_drink_real/brugerList.dart';
 
 import '../FileManager.dart';
 bool vis = false;

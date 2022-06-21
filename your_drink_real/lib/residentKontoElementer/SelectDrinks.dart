@@ -12,13 +12,14 @@ class SelectDrinks extends StatefulWidget {
   State<SelectDrinks> createState() => _SelectDrinksState();
 }
 
-class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClientMixin {
+class _SelectDrinksState extends State<SelectDrinks>
+    with AutomaticKeepAliveClientMixin {
   int _counter = 0;
-  double bottomHeight =60;
+  double bottomHeight = 60;
 
   void _clearCounter() {
     setState(() {
-      _counter=0;
+      _counter = 0;
     });
   }
 
@@ -27,9 +28,10 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
       _counter++;
     });
   }
-  void _decrementCounter(){
-    setState((){
-      if(_counter>0) {
+
+  void _decrementCounter() {
+    setState(() {
+      if (_counter > 0) {
         _counter--;
       }
     });
@@ -41,11 +43,12 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
     widget.kurv!.forEach((drink) {
       if (drink.name == selectedDrink!.name) {
         itemsInKurv++;
-      };
+      }
+      ;
     });
 
     int invindex = 0;
-    for(int i = 0; i < InventoryFileManager.getData().length; i++) {
+    for (int i = 0; i < InventoryFileManager.getData().length; i++) {
       if (selectedDrink!.name == InventoryFileManager.getData()[i].name) {
         invindex = i;
       }
@@ -53,7 +56,7 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
 
     // int itemsInInventory = InventoryList.items[InventoryList.items.indexOf(selectedDrink!)].number;
     int itemsInInventory = InventoryFileManager.getData()[invindex].number;
-    if(itemsInKurv+_counter<=itemsInInventory){
+    if (itemsInKurv + _counter <= itemsInInventory) {
       return true;
     }
     return false;
@@ -67,8 +70,8 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-backgroundColor: Colors.green[100],
-      body:Container(
+      backgroundColor: Colors.green[100],
+      body: Container(
         child: Stack(
           children: [
             Padding(
@@ -76,20 +79,24 @@ backgroundColor: Colors.green[100],
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: InventoryFileManager.getData().length,
-                  itemBuilder: (context, index){
+                  itemBuilder: (context, index) {
                     return Card(
-                      color: selectedIndex == index ? Colors.green[200] : Colors.white,
+                      color: selectedIndex == index
+                          ? Colors.green[200]
+                          : Colors.white,
                       child: ListTile(
                         onTap: () {
-                          InventoryItem instance = InventoryFileManager.getData()[index];
+                          InventoryItem instance =
+                              InventoryFileManager.getData()[index];
                           selectedDrink = instance;
-                          setState((){
-                            selectedIndex=index;
+                          setState(() {
+                            selectedIndex = index;
                           });
                         },
                         selected: index == selectedDrink,
                         title: Text(InventoryFileManager.getData()[index].name),
-                        trailing: Text('${InventoryFileManager.getData()[index].price} kr.'),
+                        trailing: Text(
+                            '${InventoryFileManager.getData()[index].price} kr.'),
                       ),
                     );
                   }),
@@ -101,7 +108,7 @@ backgroundColor: Colors.green[100],
                 children: <Widget>[
                   Expanded(
                     child: Container(
-                      color:Colors.green[400],
+                      color: Colors.green[400],
                       height: bottomHeight,
                       //padding: EdgeInsets.all(25),
                       child: Center(
@@ -117,19 +124,19 @@ backgroundColor: Colors.green[100],
                   ),
                   SizedBox(width: 5),
                   Expanded(
-                    child:Container(
-                      color:Colors.green[400],
+                    child: Container(
+                      color: Colors.green[400],
                       height: bottomHeight,
                       child: TextButton(
-                        onPressed: (){
+                        onPressed: () {
                           _counter++;
-                          if(antalOK()){
-                            setState(() {
-                            });
-                          } else{_counter--;
-                          setState(() {
-                          });
-                          };
+                          if (antalOK()) {
+                            setState(() {});
+                          } else {
+                            _counter--;
+                            setState(() {});
+                          }
+                          ;
                         },
                         child: const Icon(
                           Icons.add,
@@ -156,40 +163,43 @@ backgroundColor: Colors.green[100],
                   SizedBox(width: 5),
                   Expanded(
                     child: Container(
-                      color:Colors.green[400],
+                      color: Colors.green[400],
                       height: bottomHeight,
                       child: TextButton(
-                        onPressed: (){
-                          if(_counter>0) {
+                        onPressed: () {
+                          if (_counter > 0) {
                             if (antalOK()) {
                               int? antalDrinks = _counter;
-                              for (int? count = 1; count! <= antalDrinks; count++) {
+                              for (int? count = 1;
+                                  count! <= antalDrinks;
+                                  count++) {
                                 widget.kurv?.add(selectedDrink!);
                               }
                               _clearCounter();
                             }
                           }
-
                         },
                         style: TextButton.styleFrom(
                           primary: Colors.green[900],
                         ),
                         child: const Icon(
                           Icons.check,
-                          color: Colors.white,),
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(width: 5),
                   Expanded(
                     child: Container(
-                      color:Colors.green[400],
+                      color: Colors.green[400],
                       height: bottomHeight,
                       child: TextButton(
                         onPressed: _clearCounter,
                         child: const Icon(
                           Icons.delete,
-                          color: Colors.white,),
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -203,6 +213,5 @@ backgroundColor: Colors.green[100],
   }
 
   @override
-
   bool get wantKeepAlive => true;
 }

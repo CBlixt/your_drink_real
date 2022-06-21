@@ -1,6 +1,3 @@
-
-import 'edit_inventory.dart';
-import 'inventoryitem.dart';
 import 'inventoryitem.dart';
 
 class InventoryList {

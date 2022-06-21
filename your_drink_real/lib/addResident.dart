@@ -4,7 +4,6 @@ import 'Users.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_drink_real/Users.dart';
-import 'package:your_drink_real/brugerList.dart';
 import 'Bruger.dart';
 
 

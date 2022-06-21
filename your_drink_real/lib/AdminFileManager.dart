@@ -5,7 +5,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:your_drink_real/Admin.dart';
 
 class AdminFileManager {
-
   static List<Admin> _admins = [];
 
   static List<Admin> getData() {
@@ -44,7 +43,7 @@ class AdminFileManager {
   }
 
   static void updateAdminCode(int code) async {
-    if(code.toString().isEmpty == true) {
+    if (code.toString().isEmpty == true) {
       return;
     }
     _admins[0].code = code;
@@ -54,8 +53,7 @@ class AdminFileManager {
   }
 
   static void createAdmin() async {
-
-    while(_admins.isEmpty == true) {
+    while (_admins.isEmpty == true) {
       print(_admins.isEmpty);
       _admins.add(Admin(name: 'Admin', code: 0));
       String encodedjson = jsonEncode(_admins);
@@ -63,10 +61,4 @@ class AdminFileManager {
       await writeCounter(encodedjson);
     }
   }
-
-
-
-
-
-
 }
