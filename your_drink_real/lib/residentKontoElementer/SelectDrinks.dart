@@ -35,6 +35,30 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
     });
   }
 
+  bool antalOK() {
+    int itemsInKurv = 0;
+
+    widget.kurv!.forEach((drink) {
+      if (drink.name == selectedDrink!.name) {
+        itemsInKurv++;
+      };
+    });
+
+    int invindex = 0;
+    for(int i = 0; i < InventoryFileManager.getData().length; i++) {
+      if (selectedDrink!.name == InventoryFileManager.getData()[i].name) {
+        invindex = i;
+      }
+    }
+
+    // int itemsInInventory = InventoryList.items[InventoryList.items.indexOf(selectedDrink!)].number;
+    int itemsInInventory = InventoryFileManager.getData()[invindex].number;
+    if(itemsInKurv+_counter<=itemsInInventory){
+      return true;
+    }
+    return false;
+  }
+
   InventoryItem? selectedDrink;
 
   int? selectedIndex;
@@ -97,14 +121,16 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
                       color:Colors.green[400],
                       height: bottomHeight,
                       child: TextButton(
-                        onPressed: /*(){
-                          if(InventoryList.items[InventoryList.items.indexOf(selectedDrink!)].number!>_counter){
+                        onPressed: (){
+                          _counter++;
+                          if(antalOK()){
                             setState(() {
-                              _counter++;
                             });
-                          }
-
-                        },*/_incrementCounter,
+                          } else{_counter--;
+                          setState(() {
+                          });
+                          };
+                        },
                         child: const Icon(
                           Icons.add,
                           color: Colors.white,
@@ -135,11 +161,13 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
                       child: TextButton(
                         onPressed: (){
                           if(_counter>0) {
-                            int? antalDrinks = _counter;
-                            for (int? count = 1; count! <= antalDrinks; count++) {
-                              widget.kurv?.add(selectedDrink!);
+                            if (antalOK()) {
+                              int? antalDrinks = _counter;
+                              for (int? count = 1; count! <= antalDrinks; count++) {
+                                widget.kurv?.add(selectedDrink!);
+                              }
+                              _clearCounter();
                             }
-                            _clearCounter();
                           }
 
                         },

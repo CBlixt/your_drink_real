@@ -39,7 +39,6 @@ class AdminFileManager {
     } else {
       _admins = [];
       AdminFileManager.createAdmin();
-      print('empty');
     }
     return 'success';
   }

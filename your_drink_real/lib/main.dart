@@ -13,6 +13,7 @@ import 'package:your_drink_real/residentKontoElementer/shopdrink.dart';
 
 import 'LoadingAdminEgenskaber.dart';
 import 'editResident.dart';
+import 'package:dcdg/dcdg.dart';
 
 void main() {
   runApp(MaterialApp(

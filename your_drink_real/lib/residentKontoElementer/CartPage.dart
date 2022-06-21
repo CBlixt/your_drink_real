@@ -6,11 +6,11 @@ import 'package:your_drink_real/InventoryFileManager.dart';
 import '../Bruger.dart';
 import '../FileManager.dart';
 import '../Users.dart';
+import 'LoadingUser.dart';
 //import 'package:softp_selv_yd/Objects/Kurv.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({Key? key, this.user, this.drink, this.antal, this.kurv,required this.index}) : super(key: key);
-  final User? user;
+  const CartPage({Key? key, this.drink, this.antal, this.kurv,required this.index}) : super(key: key);
   final InventoryItem? drink;
   final int? antal;
   final int? index;
@@ -28,8 +28,10 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
   void saveInfo(double debt, int index) async {
       FileManager.saveDebt(debt, index);
       updateCount();
-    Navigator.pop(context, {
-    });
+    //Navigator.pop(context, {
+      //});
+    Navigator.push(context, MaterialPageRoute(builder:
+     (context)=>LoadingUser(index:widget.index!)));
   }
 
   double totalPrice() {
@@ -109,13 +111,16 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
                     color:selectedDrinksIndex.isEmpty ? Colors.green[400] : Colors.green[200],
                     height: bottomHeight,
                     child: TextButton(
-                      onPressed: (){
-                        if(selectedDrinksIndex.isEmpty){
+                      onPressed: () {
+                         if(selectedDrinksIndex.isEmpty){
                           saveInfo(totalPrice(), widget.index ?? 0);
                           widget.kurv!.clear();
-                          setState((){});
+                          selectedDrinksIndex.clear();
                         }
-                        },
+                        setState(() {
+                          widget.kurv;
+                        });
+                      },
 
                       style: TextButton.styleFrom(
                         primary: Colors.green[900],
@@ -134,15 +139,15 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
                     child: TextButton(
                       onPressed: (){
                         if(selectedDrinksIndex.isNotEmpty) {
-                          int chosen = selectedDrinksIndex.length;
-                          for(int count=0; count<chosen; count++){
-                            widget.kurv!.remove( widget.kurv![count]);
+                          selectedDrinksIndex.sort();
+                          for(int count=selectedDrinksIndex.length-1; count>=0; count--){
+                            widget.kurv!.removeAt(selectedDrinksIndex[count]);
                           }
+                          selectedDrinksIndex.clear();
+                          setState(() {
+                            widget.kurv;
+                          });
                         }
-                        selectedDrinksIndex.clear();
-                        setState(() {
-                          widget.kurv;
-                        });
                       },
                       child: const Icon(
                         Icons.delete,
