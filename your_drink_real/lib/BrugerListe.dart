@@ -85,10 +85,13 @@ class _BrugerListeState extends State<BrugerListe> {
                         builder: (BuildContext) {
                           return AlertDialog(
                             content: Stack(
-                              //clipBehavior: Clip.none,
+                              clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
-                                  height: 500,
+                                  width: 200,
+                                  height: 200,
+                                  top: -35.0,
+                                  right: 235.0,
 
                                   child: InkResponse(
                                     onTap: () {
@@ -179,7 +182,7 @@ class _BrugerListeState extends State<BrugerListe> {
                         builder: (BuildContext) {
                           return AlertDialog(
                             content: Stack(
-                              //clipBehavior: Clip.none,
+                              clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
                                   height: 200,
