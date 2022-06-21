@@ -57,6 +57,7 @@ class _BrugerListeState extends State<BrugerListe> {
   Widget build(BuildContext context) {
     FileManager.loadJsonData();
 
+
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
@@ -70,7 +71,6 @@ class _BrugerListeState extends State<BrugerListe> {
       ),
       body: Column(
         children: [
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
