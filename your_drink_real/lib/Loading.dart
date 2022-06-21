@@ -17,6 +17,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState(){
     super.initState();
     AdminFileManager.loadJsonData();
+    FileManager.loadJsonData();
     navigateHome();
   }
 

@@ -57,6 +57,7 @@ class _BrugerListeState extends State<BrugerListe> {
   Widget build(BuildContext context) {
     FileManager.loadJsonData();
 
+
     return Scaffold(
       backgroundColor: Colors.green[100],
       appBar: AppBar(
@@ -70,11 +71,11 @@ class _BrugerListeState extends State<BrugerListe> {
       ),
       body: Column(
         children: [
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
+                width: 0,
                 height: 100,
               ),
               FlatButton(
@@ -85,13 +86,11 @@ class _BrugerListeState extends State<BrugerListe> {
                         builder: (BuildContext) {
                           return AlertDialog(
                             content: Stack(
-                              clipBehavior: Clip.none,
+                              //clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
-                                  width: 200,
-                                  height: 200,
-                                  top: -35.0,
-                                  right: 235.0,
+                                  width: 5,
+                                  height: 500,
 
                                   child: InkResponse(
                                     onTap: () {
@@ -182,9 +181,10 @@ class _BrugerListeState extends State<BrugerListe> {
                         builder: (BuildContext) {
                           return AlertDialog(
                             content: Stack(
-                              clipBehavior: Clip.none,
+                              //clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
+                                  width: 5,
                                   height: 200,
                                   child: InkResponse(
                                     onTap: () {
