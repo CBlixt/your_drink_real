@@ -67,7 +67,7 @@ class _SelectDrinksState extends State<SelectDrinks> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-
+backgroundColor: Colors.green[100],
       body:Container(
         child: Stack(
           children: [

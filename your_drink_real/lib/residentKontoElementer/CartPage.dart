@@ -71,7 +71,7 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
     super.build(context);
     return Scaffold(
 
-      backgroundColor: Colors.green[200],
+      backgroundColor: Colors.green[100],
       body: Container(
         child: Stack(
         children: [
@@ -82,7 +82,7 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
                 itemBuilder: (context,index)
                 {
                   return Card(
-                    color: selectedDrinksIndex.contains(index) ? Colors.green[200] : Colors.white,
+                    color: selectedDrinksIndex.contains(index) ? Colors.green[100] : Colors.white,
                     child: ListTile(
                       onTap: () {
                         InventoryItem instance = widget.kurv![index];
@@ -108,7 +108,7 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
               children: [
                 Expanded(
                   child: Container(
-                    color:selectedDrinksIndex.isEmpty ? Colors.green[400] : Colors.green[200],
+                    color:selectedDrinksIndex.isEmpty ? Colors.green[400] : Colors.green[100],
                     height: bottomHeight,
                     child: TextButton(
                       onPressed: () {
@@ -127,7 +127,7 @@ class _CartPageState extends State<CartPage> with AutomaticKeepAliveClientMixin 
                       ),
                       child:  Icon(
                         Icons.check,
-                        color:selectedDrinksIndex.isEmpty ? Colors.white : Colors.green[200]),
+                        color:selectedDrinksIndex.isEmpty ? Colors.white : Colors.green[100]),
                     ),
                   ),
                 ),
