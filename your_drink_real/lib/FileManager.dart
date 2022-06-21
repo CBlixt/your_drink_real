@@ -45,7 +45,6 @@ class FileManager {
       String jsonStr = await jsonText.readAsString();
       var decoded = jsonDecode(jsonStr) as List<dynamic>;
       _data = decoded.map((e) => User.fromJson(e)).toList();
-      print('loaded');
     } else {
       _data = [];
       print('empty');

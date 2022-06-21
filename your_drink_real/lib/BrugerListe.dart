@@ -75,6 +75,7 @@ class _BrugerListeState extends State<BrugerListe> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
+                width: 0,
                 height: 100,
               ),
               FlatButton(
@@ -88,6 +89,7 @@ class _BrugerListeState extends State<BrugerListe> {
                               //clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
+                                  width: 5,
                                   height: 500,
 
                                   child: InkResponse(
@@ -182,6 +184,7 @@ class _BrugerListeState extends State<BrugerListe> {
                               //clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
+                                  width: 5,
                                   height: 200,
                                   child: InkResponse(
                                     onTap: () {
