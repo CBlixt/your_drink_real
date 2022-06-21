@@ -87,14 +87,14 @@ class _LoadingUserState extends State<LoadingUser> {
             icon: Icon(Icons.water_drop,
               color: _selectedIndex == 1 ? Colors.green : Colors.black,
             ),
-            label: 'Drikkevarer',
+            label: 'Inventory-items',
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_basket,
               color: _selectedIndex == 3 ? Colors.green : Colors.black,
             ),
-            label: 'Kurv',
+            label: 'Cart',
           ),
         ],
       ),

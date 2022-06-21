@@ -73,8 +73,6 @@ class _BrugerListeState extends State<BrugerListe> {
       ),
       body: Column(
         children: [
-          //SizedBox(
-          //height: 10,),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -90,13 +88,11 @@ class _BrugerListeState extends State<BrugerListe> {
                         builder: (BuildContext) {
                           return AlertDialog(
                             content: Stack(
-                              clipBehavior: Clip.none,
+                              //clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
-                                  width: 200,
-                                  height: 200,
-                                  top: -35.0,
-                                  right: 235.0,
+                                  height: 500,
+
                                   child: InkResponse(
                                     onTap: () {
                                       Navigator.of(context).pop();
@@ -107,6 +103,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                   key: _formKey,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
+
                                     children: <Widget>[
                                       const Padding(
                                         padding: EdgeInsets.all(9.0),
@@ -184,28 +181,14 @@ class _BrugerListeState extends State<BrugerListe> {
                         builder: (BuildContext) {
                           return AlertDialog(
                             content: Stack(
-                              clipBehavior: Clip.none,
+                              //clipBehavior: Clip.none,
                               children: <Widget>[
                                 Positioned(
-                                  width: 200,
                                   height: 200,
-                                  top: -35.0,
-                                  right: 235.0,
                                   child: InkResponse(
                                     onTap: () {
                                       Navigator.of(context).pop();
-                                    }, /*
-                                    child: IconButton(
-                                      icon: Icon(
-                                        Icons.close,
-                                        color: Colors.red,
-                                        size: 25,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    */
+                                    },
                                   ),
                                 ),
                                 Form(
@@ -214,11 +197,11 @@ class _BrugerListeState extends State<BrugerListe> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       const Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(9.0),
                                         child: Text('Enter admin-code'),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(9.0),
                                         child: TextFormField(
                                           key: _codeKey3,
                                           controller: myController3,
@@ -226,13 +209,12 @@ class _BrugerListeState extends State<BrugerListe> {
                                               labelText: 'Enter code'),
                                           keyboardType: TextInputType.number,
                                           inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .digitsOnly
+                                            FilteringTextInputFormatter.digitsOnly
                                           ],
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(9.0),
                                         child: RaisedButton(
                                             color: Colors.green[100],
                                             onPressed: () async {
