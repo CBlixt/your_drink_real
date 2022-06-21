@@ -14,6 +14,7 @@ import 'addResident.dart';
 import 'dart:async' show Future;
 import 'package:path_provider/path_provider.dart';
 import 'package:your_drink_real/InventoryFileManager.dart';
+import 'package:your_drink_real/AdminFileManager.dart';
 
 class BrugerListe extends StatefulWidget {
   const BrugerListe({Key? key}) : super(key: key);
@@ -43,8 +44,6 @@ class _BrugerListeState extends State<BrugerListe> {
 
   List<Bruger> users = brugerList.users;
 
-  Bruger bruger = Bruger(navn: "", husnummer: "", debt: 0.0);
-
   final _formKey = GlobalKey<FormState>();
   final _codeKey1 = GlobalKey<FormState>();
   final _codeKey2 = GlobalKey<FormState>();
@@ -53,8 +52,6 @@ class _BrugerListeState extends State<BrugerListe> {
   final myController2 = TextEditingController();
   final myController3 = TextEditingController();
   var admin = "Press to add admin";
-  var kode;
-  var firstTimeLoggingIn = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +79,7 @@ class _BrugerListeState extends State<BrugerListe> {
               ),
               FlatButton(
                 onPressed: () {
-                  if (firstTimeLoggingIn == 0) {
+                  if (AdminFileManager.getData()[0].code == 0) {
                     showDialog(
                         context: context,
                         builder: (BuildContext) {
@@ -149,17 +146,18 @@ class _BrugerListeState extends State<BrugerListe> {
                                                   myController2.text.length ==
                                                       4) {
                                                 admin = "Admin-profile";
-                                                firstTimeLoggingIn += 1;
-                                                kode = myController1.text;
+                                                print(AdminFileManager.getData());
+                                                var n1 = int.parse(myController1.text);
+                                                AdminFileManager.updateAdminCode(n1);
 
                                                 Navigator.pop(context);
-
-                                                myController1.clear();
-                                                myController2.clear();
+                                                print(AdminFileManager.getData()[0].code);
+                                                myController1.text='';
+                                                myController2.text='';
                                                 await Navigator.pushNamed(
                                                     context,
                                                     '/adminIndstillinger');
-                                                setState(() {});
+                                                setState(() {AdminFileManager.updateAdminCode(n1);});
                                               }
                                             },
                                             child: Text(
@@ -218,7 +216,7 @@ class _BrugerListeState extends State<BrugerListe> {
                                         child: RaisedButton(
                                             color: Colors.green[100],
                                             onPressed: () async {
-                                              if (myController3.text == kode) {
+                                              if (myController3.text == AdminFileManager.getData()[0].code.toString()) {
                                                 myController3.clear();
                                                 Navigator.pop(context);
                                                 await Navigator.pushNamed(
